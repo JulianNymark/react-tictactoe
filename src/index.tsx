@@ -2,15 +2,15 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './index.css';
 
-interface Props {
+interface SquareProps {
     value: string;
 }
 
-interface State {
+interface SquareState {
     value: string | null;
 }
 
-class Square extends React.Component<Props, State> {
+class Square extends React.Component<SquareProps, SquareState> {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,9 +31,21 @@ class Square extends React.Component<Props, State> {
     }
 }
 
-class Board extends React.Component {
+interface BoardProps { }
+interface BoardState {
+    squares: string[];
+}
+
+class Board extends React.Component<BoardProps, BoardState> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            squares: Array(9).fill(null),
+        };
+    }
+
     renderSquare(i) {
-        return <Square value={i} />;
+        return <Square value={this.state.squares[i]} />;
     }
 
     render() {
