@@ -2,24 +2,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './index.css';
 
-// type SquareState = 'X' | 'O' | null;
-
-interface SquareProps {
-    value: any;
-    onClick: () => any;
-}
-
-class Square extends React.Component<SquareProps, any> {
-    render() {
-        return (
-            <button
-                className="square"
-                onClick={() => this.props.onClick()}
-            >
-                {this.props.value}
-            </button>
-        );
-    }
+function Square(props) {
+    return (
+        <button className="square" onClick={props.onClick}>
+            {props.value}
+        </button>
+    );
 }
 
 interface BoardProps { }
@@ -45,7 +33,7 @@ class Board extends React.Component<BoardProps, BoardState> {
         return (
             <Square
                 value={this.state.squares[i]}
-                onClick={() => this.handleClick(i)}
+                onClick={() => { this.handleClick(i) }}
             />
         );
     }
