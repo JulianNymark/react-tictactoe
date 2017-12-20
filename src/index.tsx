@@ -27,6 +27,9 @@ class Board extends React.Component<BoardProps, BoardState> {
 
     handleClick(idx: number) {
         const squares = [...this.state.squares];
+        if (calculateWinner(squares) || squares[idx]) {
+            return;
+        }
         squares[idx] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
             squares: squares,
